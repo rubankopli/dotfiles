@@ -1,0 +1,45 @@
+layout {
+    cwd = "/home/rkopli/repos/adas-platform"
+
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+    }
+
+    new_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+    }
+
+    tab name="󰳏 adas-platform" focus=true {
+        pane
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="  aos" {
+        pane name="aos" command="auto s -f -t aos && auto i -t aos" borderless=true
+    }
+
+    tab name="  dev" {
+        pane name="dev" command="auto s -f && auto i"
+    }
+
+    tab name="󰣙 toliman" {
+        pane name="ECU" command="ssh root@10.1.0.6" start_suspended=true
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="󰟀 system" {
+        pane name="home" cwd="~" command="ls" focus=true
+        pane name="root" cwd="/" command="ls"
+        floating_panes name="htop" command="htop"
+    }
+}
