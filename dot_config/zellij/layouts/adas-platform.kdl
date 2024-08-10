@@ -1,5 +1,5 @@
 layout {
-    cwd = "/home/rkopli/repos/adas-platform"
+    cwd "/home/rkopli/repos/adas-platform"
 
     default_tab_template {
         pane size=1 borderless=true {
@@ -12,34 +12,44 @@ layout {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
-        children
+        pane
     }
 
-    tab name="󰳏 adas-platform" focus=true {
+    tab name="adas-platform" focus=true {
         pane
         pane size=2 borderless=true {
             plugin location="zellij:status-bar"
         }
     }
 
-    tab name="  aos" {
-        pane name="aos" command="auto s -f -t aos && auto i -t aos" borderless=true
+    tab name="aos" {
+        pane name="aos" {
+            command "python3"
+            args "./ford_source/tool/auto.py" "start" "--force" "--type aos" "&&" "./ford_source/tool/auto.py" "into" "--type aos"
+        }
     }
 
-    tab name="  dev" {
-        pane name="dev" command="auto s -f && auto i"
+    tab name="dev" {
+        pane name="dev" {
+            command "python3"
+            args "./ford_source/tool/auto.py" "start" "--force" "--type dev" "&&" "./ford_source/tool/auto.py" "into" "--type dev"
+        }
     }
 
-    tab name="󰣙 toliman" {
-        pane name="ECU" command="ssh root@10.1.0.6" start_suspended=true
+    tab name="toliman" {
+        pane name="ECU" {
+            command "ssh"
+            args "root@10.1.0.6"
+            start_suspended true
+        }
         pane size=2 borderless=true {
             plugin location="zellij:status-bar"
         }
     }
 
-    tab name="󰟀 system" {
-        pane name="home" cwd="~" command="ls" focus=true
-        pane name="root" cwd="/" command="ls"
-        floating_panes name="htop" command="htop"
+    tab name="system" {
+        pane name="home" cwd="~"
+        pane name="root" cwd="/"
+        floating_panes name="htop" command="htop" focus=true
     }
 }

@@ -1,0 +1,39 @@
+# `ls` aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Unset proxy variables if not on proxy
+if ! (dig internet.ford.com +short | grep -q "19.12."); then
+        unset http_proxy https_proxy ftp_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY
+fi
+
+# Set default text editor
+export EDITOR='code'
+
+# Build flag shortcuts
+
+## Build x86 and skip checks
+alias brsi='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos //tool/rigil_standin/...'
+## Build x86 with checks
+alias brsi-checks='auto build --arch x86 --target_platform qnx --middleware aos //tool/rigil_standin/...'
+## Build arm and skip checks
+alias brsi-arm='auto build --skip_checks --arch arm --target_platform qnx --middleware aos //tool/rigil_standin/...'
+## Build arm with checks
+alias brsi-arm-checks='auto build --arch arm --target_platform qnx --middleware aos //tool/rigil_standin/...'
+
+# Test flag shortcuts
+
+## Test RSI
+alias trsi='auto test all --middleware aos --language all //tool/rigil_standin/...'
+
+## Build and copy over to QEMU for testing
+alias trsi-qemu='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos //tool/rigil_standin:rigil-stand-in && scp -r -P 2210 bazel-bin/tool/rigil_standin/* root@127.0.0.1:/rigil_standin/test/'
+
+## Build and copy over to ECU for testing
+alias trsi-ecu='auto build --skip_checks --arch arm --target_platform qnx --middleware aos //tool/rigil_standin:rigil-stand-in && scp .cache/bazel/_bazel_autonomy_aos/output/execroot/autonomy/bazel-out/k8-opt/bin/tool/rigil_standin/rigil-stand-in root@10.1.0.32:/debugfs/'
+
+# Build using a preset set of flags used to build AOS stuff at the directory/target passed in (or the whole repo if no dir is passed). Can also pass in the 'S' flag to skip checks
+ba() {
+        auto b -a x86 -P qnx -M aos $@
+}
