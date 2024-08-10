@@ -285,6 +285,7 @@ plugins {
 // Default: "default"
 //
 // default_layout "compact"
+default_layout "adas-platform"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
