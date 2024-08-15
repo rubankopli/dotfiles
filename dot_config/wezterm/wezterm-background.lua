@@ -6,7 +6,7 @@ local wezterm = require 'wezterm'
 ------------------------------
 
 -- Control the dimness of the background images
-local background_dimmer = { brightness = 0.2 }
+local background_dimmer = { brightness = 0.1 }
 local background_rain_dimmer = { brightness = 0.2 }
 local background_trails_dimmer = { brightness = 0.3 }
 
