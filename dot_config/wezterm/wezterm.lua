@@ -15,9 +15,9 @@ local config = wezterm.config_builder()
 ------------------
 
 -- non-windows targets
-if wezterm.target_triple ~= 'x86_64-pc-windows-msvc' then
-	config.default_prog = { 'zellij' }
-end
+--if wezterm.target_triple ~= 'x86_64-pc-windows-msvc' then
+--	config.default_prog = { 'zellij' }
+--end
 
 --------------------
 -- * APPEARANCE * --

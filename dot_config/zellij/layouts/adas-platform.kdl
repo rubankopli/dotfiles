@@ -39,7 +39,7 @@ layout {
     tab name="toliman" {
         pane name="ECU" {
             command "ssh"
-            args "root@10.1.0.6"
+            args "root@10.1.0.32"
             start_suspended true
         }
         pane size=2 borderless=true {
