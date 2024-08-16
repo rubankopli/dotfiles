@@ -22,6 +22,10 @@ alias brsi-arm='auto build --skip_checks --arch arm --target_platform qnx --midd
 ## Build arm with checks
 alias brsi-arm-checks='auto build --arch arm --target_platform qnx --middleware aos //tool/rigil_standin/...'
 
+## Build using preset flags for the ECU
+alias b-ecu='auto build --arch arm --target_platform qnx --middleware aos $@'
+
+
 # Test flag shortcuts
 
 ## Test RSI
