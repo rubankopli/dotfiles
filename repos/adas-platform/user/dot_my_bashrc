@@ -11,33 +11,47 @@ fi
 # Set default text editor
 export EDITOR='code'
 
-# Build flag shortcuts
+########################
+# Build flag shortcuts #
+########################
 
 ## Build x86 and skip checks
-alias brsi='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos //tool/rigil_standin/...'
+alias brsi-x86='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
 ## Build x86 with checks
-alias brsi-checks='auto build --arch x86 --target_platform qnx --middleware aos //tool/rigil_standin/...'
+alias brsi-x86-checks='auto build --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
 ## Build arm and skip checks
-alias brsi-arm='auto build --skip_checks --arch arm --target_platform qnx --middleware aos //tool/rigil_standin/...'
+alias brsi-arm='auto build --skip_checks --arch arm --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
 ## Build arm with checks
-alias brsi-arm-checks='auto build --arch arm --target_platform qnx --middleware aos //tool/rigil_standin/...'
+alias brsi-arm-checks='auto build --arch arm --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
 
-## Build using preset flags for the ECU
-alias b-ecu='auto build --arch arm --target_platform qnx --middleware aos $@'
+## Alias aliases
+alias brsi='brsi-arm $@'
+alias brsi-checks='brsi-arm-checks $@'
+alias brsi-ecu='brsi-arm $@'
 
 
-# Test flag shortcuts
+
+#######################
+# Test flag shortcuts #
+#######################
 
 ## Test RSI
-alias trsi='auto test all --middleware aos --language all //tool/rigil_standin/...'
+alias trsi='auto test all --middleware aos --language all $@ //tool/rigil_standin/...'
 
 ## Build and copy over to QEMU for testing
-alias trsi-qemu='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos //tool/rigil_standin:rigil-stand-in && scp -r -P 2210 bazel-bin/tool/rigil_standin/* root@127.0.0.1:/rigil_standin/test/'
+alias trsi-qemu='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin:rigil-stand-in && scp -r -P 2210 bazel-bin/tool/rigil_standin/* root@127.0.0.1:/rigil_standin/test/'
 
 ## Build and copy over to ECU for testing
-alias trsi-ecu='auto build --skip_checks --arch arm --target_platform qnx --middleware aos //tool/rigil_standin:rigil-stand-in && scp -r  bazel-bin/tool/rigil_standin/ root@10.1.0.32:/debugfs/'
+alias trsi-ecu='brsi-arm $@ && /autonomy/tool/rigil_standin/tool/run_rsi_tests_on_ecu.sh'
 
-# Build using a preset set of flags used to build AOS stuff at the directory/target passed in (or the whole repo if no dir is passed). Can also pass in the 'S' flag to skip checks
+#################
+# Generic build #
+#################
+
+## Build using preset flags for the ECU
+alias barm='auto build --arch arm --target_platform qnx --middleware aos $@'
+
+## Build using a preset set of flags used to build AOS stuff at the directory/target passed in (or the whole repo if no dir is passed). Can also pass in the 'S' flag to skip checks
 ba() {
         auto b -a x86 -P qnx -M aos $@
 }

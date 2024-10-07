@@ -10,6 +10,9 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices --
 
+-- NO BELL NOISE PLEASE DEAR GOD
+config.audible_bell = "Disabled"
+
 ------------------
 --- * STARTUP * --
 ------------------
