@@ -17,5 +17,20 @@ if status is-interactive
 	set -xU COLORFGBG "10;5"
 
 
+	# Abbreviations (Different from aliases! Aliases should be placed in 'functions/')
+	## Directories
+	abbr --add ~c --position anywhere "~/.config/"
+	## Git
+	### Commands
+	abbr --add gits --position command "git status"
+	abbr --add gita --position command "git add . && git status"
+	abbr --add gitc --position command "git commit -m "TAS-#### #comment "
+	abbr --add gitct --position command "git commit -m "TAS-#### #time #h #comment "
+	### Work specific
+	abbr --add gch --position command --set-cursor=# "git checkout RKOPLI-TAS-#"
+	
+
+
+
 # end if  is-interactive	
 end 
