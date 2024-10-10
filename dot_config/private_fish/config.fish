@@ -22,12 +22,13 @@ if status is-interactive
 	abbr --add ~c --position anywhere --set-cursor=_ "~/.config/_"
 	## Git
 	### Commands
-	abbr --add gits --position command "git status"
 	abbr --add gita --position command "git add . && git status"
-	abbr --add gitc --position command --set-cursor=_ "git commit -m \"TAS-#### #comment _\""
+	abbr --add gitb --position command "git branch"
+	# TODO: Change below to a function to auto-populate ticket number based on branch name
+	abbr --add gitc --position command --set-cursor=_ "git commit -m \"TAS-_ #comment \""
+	abbr --add gitch --position command --set-cursor=# "git checkout RKOPLI-TAS-#"
 	abbr --add gitct --position command "git commit -m "TAS-#### #time #h #comment "
-	### Work specific
-	abbr --add gch --position command --set-cursor=# "git checkout RKOPLI-TAS-#"
+	abbr --add gits --position command "git status"
 	
 
 

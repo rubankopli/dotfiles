@@ -211,7 +211,7 @@
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "editor.fontSize": 16,
-    "editor.fontFamily": "'IntoneMono NF', 'MesloLGS NF', 'Mensch', 'JetBrains Mono', 'Droid Sans Mono', 'monospace'",
+    "editor.fontFamily": "'Mensch', 'IntoneMono NF', 'MesloLGS NF', 'JetBrains Mono', 'Droid Sans Mono', 'monospace'",
     "editor.fontLigatures": true,
     "workbench.settings.applyToAllProfiles": [
         "editor.fontFamily"

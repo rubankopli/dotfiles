@@ -1,7 +1,25 @@
+#!/bin/bash
+
+#########################################
+### Ford DAT3 Docker Custom '.bashrc' ###
+#########################################
+
+
+
+###################
+# Command Aliases #
+###################
+
 # `ls` aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+
+
+#############################
+# Environment Customization #
+#############################
 
 # Unset proxy variables if not on proxy
 if ! (dig internet.ford.com +short | grep -q "19.12."); then
@@ -11,41 +29,10 @@ fi
 # Set default text editor
 export EDITOR='code'
 
-########################
-# Build flag shortcuts #
-########################
 
-## Build x86 and skip checks
-alias brsi-x86='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
-## Build x86 with checks
-alias brsi-x86-checks='auto build --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
-## Build arm and skip checks
-alias brsi-arm='auto build --skip_checks --arch arm --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
-## Build arm with checks
-alias brsi-arm-checks='auto build --arch arm --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
-
-## Alias aliases
-alias brsi='brsi-arm $@'
-alias brsi-checks='brsi-arm-checks $@'
-alias brsi-ecu='brsi-arm $@'
-
-
-
-#######################
-# Test flag shortcuts #
-#######################
-
-## Test RSI
-alias trsi='auto test all --middleware aos --language all $@ //tool/rigil_standin/...'
-
-## Build and copy over to QEMU for testing
-alias trsi-qemu='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin:rigil-stand-in && scp -r -P 2210 bazel-bin/tool/rigil_standin/* root@127.0.0.1:/rigil_standin/test/'
-
-## Build and copy over to ECU for testing
-alias trsi-ecu='brsi-arm $@ && /autonomy/tool/rigil_standin/tool/run_rsi_tests_on_ecu.sh'
 
 #################
-# Generic build #
+# Generic Build #
 #################
 
 ## Build using preset flags for the ECU
@@ -55,3 +42,56 @@ alias barm='auto build --arch arm --target_platform qnx --middleware aos $@'
 ba() {
         auto b -a x86 -P qnx -M aos $@
 }
+
+
+
+########################
+# Build Flag Shortcuts #
+########################
+
+## Build x86 and skip checks
+alias b-rsi-x86='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
+## Build x86 with checks
+alias b-rsi-x86-checks='auto build --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
+## Build arm and skip checks
+alias b-rsi-arm='auto build --skip_checks --arch arm --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
+## Build arm with checks
+alias b-rsi-arm-checks='auto build --arch arm --target_platform qnx --middleware aos $@ //tool/rigil_standin/...'
+
+## Alias aliases
+alias b-rsi='brsi-arm $@'
+alias b-rsi-checks='brsi-arm-checks $@'
+alias b-rsi-ecu='brsi-arm $@'
+
+
+
+######################
+# Hardware Shortcuts #
+######################
+
+# Copy RSI to hardware
+alias c-rsi='scp /autonomy/user/rigil_standin/* root@10.1.0.32:/debugfs/rigil_standin/*'
+
+
+
+#######################
+# Test Flag Shortcuts #
+#######################
+
+## Run RSI unit tests using Bazel's testrunner
+alias t-rsi-='auto test all --middleware aos --language all $@ //tool/rigil_standin/...'
+
+## Build and copy over to QEMU for testing
+alias t-rsi-qemu='auto build --skip_checks --arch x86 --target_platform qnx --middleware aos $@ //tool/rigil_standin:rigil-stand-in && scp -r -P 2210 bazel-bin/tool/rigil_standin/* root@127.0.0.1:/rigil_standin/test/'
+
+## Build and copy over to ECU for testing
+alias t-rsi-ecu='brsi-arm $@ && /autonomy/tool/rigil_standin/tool/run_rsi_tests_on_ecu.sh'
+
+## Copy files over to ECU for manual testing
+alias t-rsi-m='scp -r /autonomy/user/rigil_standin/* root@10.1.0.32:/debugfs/rigil_standin/'
+
+## Build RSI with all checks, then run tests on ECU, then copy binaries over to ECU and run to test
+alias t-rsi='brsi-arm-checks $@ && /autonomy/tool/rigil_standin/tool/run_rsi_tests_on_ecu.sh && c-rsi && t-rsi-m && ssh root@10.1.0.32 /debugfs/rigil_standin/rigil-stand-in'
+
+
+
