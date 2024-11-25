@@ -1,3 +1,11 @@
+if status is-login
+	# Add user's private bin to the path, if it exists
+	if test -ed $HOME/.local/bin
+		fish_add_path $HOME/.local/bin
+	end
+# end status is-login
+end
+
 if status is-interactive
     	# Commands to run in interactive sessions can go here
 	
