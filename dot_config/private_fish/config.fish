@@ -1,15 +1,40 @@
 if status is-login
-	# Add user's private bin to the path, if it exists
-	if test -ed $HOME/.local/bin
+
+	# Directory Setup
+
+	# Create wafcache directory if one does not already exist (waf build cache)
+	# We will then export an environment variable pointing to this
+	if not test -d "$HOME/.cache/waf"
+		mkdir $HOME/.cache/waf
+	end
+
+	# Exports
+
+	## Add user's private bin to the path, if it exists
+	if test -d "$HOME/.local/bin"
 		fish_add_path $HOME/.local/bin
 	end
+
+
 # end status is-login
 end
 
 if status is-interactive
     	# Commands to run in interactive sessions can go here
+
 	
 	# Exports
+
+	## Add to PATH
+	### Add seegrid docker-test build-configs repo folder
+	fish_add_path $HOME/repos/seegrid/docker-test/build-configs
+
+	## Add environment variables
+	## Add wafcache environment variables
+	set --global --export WAFCACHE $HOME/.cache/waf
+	set --global --export WAFLNCACHE $HOME/.cache/waf
+	set --global --export WAFCACHE_DIR_FOR_DOCKER $HOME/.cache/waf
+
 
 	## man config (configurations for man pages, not men)
 	### Show percentage through document in less: "less -s -M +Gg"
