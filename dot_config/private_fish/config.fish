@@ -63,7 +63,8 @@ if status is-interactive
 	abbr --add gitct --position command "git commit -m "TAS-#### #time #h #comment "
 	abbr --add gits --position command "git status"
 	
-
+	## Seegrid DM Tool
+	abbr --add dme --position command --set-cursor=_ "dm exec build _"
 
 
 # end if  is-interactive	
