@@ -1,22 +1,221 @@
 {
-    "glassit.alpha": 230,
+    //////////////////////////////
+    //#region Language Settings //
+    //////////////////////////////
+    "[ansible]": {
+        "editor.defaultFormatter": "redhat.ansible",
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.renderWhitespace": "trailing"
+    },
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[properties]": {
+        "editor.bracketPairColorization.enabled": true,
+        "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?"
+    },
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    //#endregion
+    /////////////////////////////
+    //#region General Settings //
+    /////////////////////////////
+    //#region > Color/Theme
     "workbench.colorTheme": "Material Candy",
     "workbench.colorCustomizations": {
-        "editor.background": "#000000",
-        "sideBar.background": "#000000",
-        "panel.background": "#000000",
-        "badge.background": "#000000",
-        "banner.background": "#000000",
-        "menu.background": "#000000",
-        "input.background": "#000000",
-        "button.background": "#000000",
-        "titleBar.activeBackground": "#000000",
-        "tab.inactiveBackground": "#000000",
-        "tab.activeBackground": "#121a24"
+        "[Material Candy]": {
+            // editor
+            "breadcrumb.foreground": "#007744",
+            "dropdown.background": "#050505",
+            "editorLineNumber.foreground": "#007744",
+            "editorLineNumber.activeForeground": "#00DDAA",
+            "editor.background": "#000000",
+            "input.background": "#050505",
+            // menus
+            "badge.background": "#110022",
+            "banner.background": "#000000",
+            "button.background": "#000000",
+            "menu.background": "#050505",
+            // panel
+            "panel.background": "#000000",
+            // side bar
+            "activityBar.background": "#000000",
+            "activityBar.border": "#050505",
+            "sideBar.background": "#000000",
+            "sideBar.border": "#111111",
+            "statusBar.background": "#001133",
+            "statusBarItem.remoteBackground": "#005533",
+            // tab bar
+            // "tab.activeBackground": "#122412",
+            "editorGroupHeader.tabsBackground": "#000000",
+            "tab.activeBackground": "#010101",
+            //     "tab.activeBackground": "#121a24"
+            "tab.activeForeground": "#00DDAA",
+            "tab.inactiveBackground": "#000000",
+            "tab.border": "#111111",
+            "titleBar.activeBackground": "#000000",
+            // window
+        },
+        "[Sweet vscode]": {
+            "input.background": "#000000",
+            "menu.background": "#000000",
+            "panel.background": "#000000",
+            "sideBar.background": "#000000"
+        }
+    },
+    "editor.semanticTokenColorCustomizations": {
+        "[Material Candy]": {
+            "enabled": true,
+            "rules": {}
+        }
     },
     "editor.tokenColorCustomizations": {
-        "comments": "#009900"
+        "comments": "#009900",
+        "[Material Candy]": {},
+        "textMateRules": [
+            {
+                "scope": "keyword.control.ref.properties",
+                "settings": {
+                    "foreground": "#FF0000"
+                }
+            },
+            {
+                "scope": "keyword.other.separator",
+                "settings": {
+                    "foreground": "#FF8C00"
+                }
+            },
+            {
+                "scope": "string.other.option",
+                "settings": {
+                    "foreground": "#006eff"
+                }
+            },
+            {
+                "scope": "keyword.other.definition.ini",
+                "settings": {
+                    "foreground": "#009dff"
+                }
+            },
+            {
+                "scope": "punctuation.separator.key-value.ini",
+                "settings": {
+                    "foreground": "#FF8C00"
+                }
+            },
+            {
+                "scope": "entity.name.section.group-title.ini",
+                "settings": {
+                    "foreground": "#65ff51"
+                }
+            },
+            {
+                "scope": "punctuation.separator.option.ini",
+                "settings": {
+                    "foreground": "#0048ff"
+                }
+            },
+            {
+                "scope": "comment.line.number-sign.ini",
+                "settings": {
+                    "foreground": "#1a5200"
+                }
+            }
+        ]
     },
+    //#endregion
+    //#region > Workbench
+    "workbench.startupEditor": "none",
+    "workbench.settings.editor": "json",
+    //#region >> Layout
+    "workbench.editor.pinnedTabSizing": "compact",
+    "workbench.sideBar.location": "right",
+    //#endregion
+    //#endregion
+    //#region > Editor
+    "editor.accessibilitySupport": "off",
+    "editor.tabCompletion": "on",
+    //#region >> View
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.guides.indentation": false,
+    "editor.minimap.autohide": true,
+    "editor.minimap.maxColumn": 80,
+    "editor.minimap.scale": 1,
+    "editor.minimap.side": "right",
+    "editor.renderLineHighlight": "all",
+    "editor.rulers": [
+        {
+            "column": 140,
+            "color": "#1b1b1b"
+        }
+    ],
+    "editor.stickyScroll.defaultModel": "foldingProviderModel",
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    //#endregion
+    //#region >> Formatting
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    // "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.wrappingIndent": "indent",
+    //#endregion
+    //#endregion
+    //#region > Files
+    "files.associations": {
+        "*.yaml": "yaml",
+        "*.inc": "cpp",
+        "*.tcc": "cpp"
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    //#endregion
+    //#region > Notebook
+    "notebook.output.textLineLimit": 300,
+    //#endregion
+    //#region > Remote
+    "remote.SSH.remotePlatform": {
+        "10.0.0.176": "linux",
+        "magicmirror.local": "linux"
+    },
+    //#endregion
+    //#region > Security
+    "security.allowedUNCHosts": [
+        "TOWER"
+    ],
+    "security.workspace.trust.untrustedFiles": "open",
+    //#endregion
+    //#region > Terminal
+    "terminal.integrated.stickyScroll.enabled": true,
+    //#endregion
+    //#region > Window
+    "window.closeWhenEmpty": true,
+    //#endregion
+    //#endregion
+    ///////////////////////////////
+    //#region Extension Settings //
+    ///////////////////////////////
+    //#region > Arduino
+    "arduino.enableUSBDetection": true,
+    "arduino.useArduinoCli": true,
+    //#endregion
+    //#region > BetterComments
     "better-comments.tags": [
         {
             "tag": "!",
@@ -77,18 +276,59 @@
             "italic": false
         }
     ],
-    "files.associations": {
-        "*.inc": "cpp",
-        "*.tcc": "cpp"
-    },
+    //#endregion
+    //#region > CMake
+    "cmake.buildDirectory": "${workspaceFolder}/build/x64-Linux-Development/",
     "cmake.configureOnOpen": true,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
     "cmake.showOptionsMovedNotification": false,
-    "[cpp]": {
-        "editor.defaultFormatter": "xaver.clang-format"
+    //#endregion
+    //#region > CSpell
+    "cSpell.language": "en,en-US",
+    "cSpell.userWords": [
+        "AUTOSAR",
+        "Constexpr",
+        "constexprs",
+        "hellscape",
+        "Karolinska",
+        "nullpointer",
+        "PIPC",
+        "Rigil",
+        "Struct",
+        "Telematics",
+        "Toliman",
+        "tparam",
+        "VRTE"
+    ],
+    //#endregion
+    //#region > DoxygenDocumentationGenerator
+    "doxdocgen.c.commentPrefix": "///",
+    "doxdocgen.c.firstLine": "///",
+    "doxdocgen.c.lastLine": "///",
+    "doxdocgen.c.triggerSequence": "///",
+    //#endregion
+    //#region > Git
+    "git.autofetch": true,
+    //#endregion
+    //#region > Github Copilot
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": "true",
+        "markdown": "true",
+        "scminput": false
     },
-    "editor.formatOnPaste": true,
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
-    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    //#endregion
+    //#region > Github Pull Requests
+    "githubPullRequests.assignCreated": "${user}",
+    "githubPullRequests.commentExpandState": "collapseAll",
+    //#endregion
+    //#region > GlassIt
+    "glassit.alpha": 255,
+    //#endregion
+    //#region > HeaderSourceSwitch
     "headerSourceSwitch.mappings": [
         {
             "header": [
@@ -109,6 +349,16 @@
             "name": "C++"
         }
     ],
+    //#endregion
+    //#region > Redhat
+    "redhat.telemetry.enabled": false,
+    //#endregion
+    //#region > Shellcheck
+    "shellcheck.customArgs": [
+        "--enable=all"
+    ],
+    //#endregion
+    //#region > SonarLint
     "sonarlint.focusOnNewCode": false,
     "sonarlint.connectedMode.connections.sonarqube": [
         {
@@ -117,116 +367,71 @@
             "disableNotifications": true
         }
     ],
-    "cSpell.userWords": [
-        "AUTOSAR",
-        "Constexpr",
-        "constexprs",
-        "hellscape",
-        "Karolinska",
-        "nullpointer",
-        "PIPC",
-        "Rigil",
-        "Struct",
-        "Telematics",
-        "Toliman",
-        "tparam",
-        "VRTE"
-    ],
-    "vsconan.general.conanUserHome": "~/.conan",
-    "github.copilot.chat.localeOverride": "en",
-    "github.copilot.advanced": {},
-    "github.gitProtocol": "ssh",
-    "http.experimental.systemCertificatesV2": true,
-    "remote.SSH.remotePlatform": {
-        "10.0.0.202": "linux"
-    },
-    "editor.stickyScroll.defaultModel": "foldingProviderModel",
-    "terminal.integrated.stickyScroll.enabled": true,
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": "true",
-        "markdown": "true",
-        "scminput": false
-    },
-    "editor.formatOnSave": true,
-    "workbench.sideBar.location": "right",
-    "git.autofetch": true,
-    "editor.minimap.scale": 3,
-    "editor.minimap.maxColumn": 80,
-    "editor.minimap.side": "left",
-    "editor.minimap.enabled": false,
-    "editor.unicodeHighlight.nonBasicASCII": false,
-    "githubPullRequests.assignCreated": "${user}",
-    "githubPullRequests.commentExpandState": "collapseAll",
-    "cSpell.language": "en,en-US",
-    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-    "editor.tabCompletion": "on",
-    "editor.renderLineHighlight": "all",
-    "editor.wrappingIndent": "indent",
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "git.branchPrefix": "RKOPLI",
-    "githubIssues.issueBranchTitle": "${user}-${issueNumber}-${sanitizedIssueTitle}",
-    "search.showLineNumbers": true,
-    "search.smartCase": true,
-    "workbench.editor.highlightModifiedTabs": true,
-    "cSpell.showCommandsInEditorContextMenu": false,
-    "explorer.excludeGitIgnore": true,
-    "explorer.compactFolders": false,
-    "[shellscript]": {
-        "editor.defaultFormatter": "foxundermoon.shell-format"
-    },
-    "[starlark]": {
-        "editor.defaultFormatter": "BazelBuild.vscode-bazel",
-        "editor.formatOnSave": true,
-        "editor.formatOnPaste": true,
-        "editor.formatOnType": true
-    },
-    "github.copilot.editor.enableAutoCompletions": true,
-    "cmake.pinnedCommands": [
-        "workbench.action.tasks.configureTaskRunner",
-        "workbench.action.tasks.runTask"
-    ],
-    "clangd.arguments": [
-        "--header-insertion=never",
-        "--compile-commands-dir=${workspaceFolder}/",
-        "--query-driver=**"
-    ],
-    "files.watcherExclude": {
-        "**/bazel-*/**": true,
-        "**/build/**": true
-    },
-    "remote.autoForwardPortsSource": "output",
-    "clang-format.executable": "clang-format-18",
-    "[dockerfile]": {
-        "editor.defaultFormatter": "foxundermoon.shell-format"
-    },
-    "workbench.editor.pinnedTabSizing": "compact",
-    "editor.guides.indentation": false,
-    "shellformat.useEditorConfig": true,
-    "shellformat.flag": "-bn",
-    "editor.formatOnType": true,
-    "[properties]": {
-        "editor.defaultFormatter": "foxundermoon.shell-format"
-    },
-    "editor.fontSize": 16,
-    "editor.fontFamily": "'Mensch', 'IntoneMono NF', 'MesloLGS NF', 'JetBrains Mono', 'Droid Sans Mono', 'monospace'",
-    "editor.fontLigatures": true,
-    "workbench.settings.applyToAllProfiles": [
-        "editor.fontFamily"
-    ],
-    "editor.rulers": [
-        {
-            "column": 140,
-            "color": "#1b1b1b"
-        }
-    ],
-    "editor.codeLensFontFamily": "'Lilex Nerd Font', 'IntoneMono NF', 'JetBrains Mono'",
-    "clangd.detectExtensionConflicts": false,
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "clangd.checkUpdates": true,
-    "security.workspace.trust.untrustedFiles": "open",
+    //#endregion
+    //#region > YAML
+    "yaml.format.singleQuote": true,
+    "yaml.schemas": {},
+    //#endregion
+    //#endregion
 }
+// #region Ported - TODO
+// Ported from work config
+//
+//
+// "git.branchPrefix": "RKOPLI",
+// "githubIssues.issueBranchTitle": "${user}-${issueNumber}-${sanitizedIssueTitle}",
+// "search.showLineNumbers": true,
+// "search.smartCase": true,
+// "workbench.editor.highlightModifiedTabs": true,
+// "cSpell.showCommandsInEditorContextMenu": false,
+// "explorer.excludeGitIgnore": true,
+// "explorer.compactFolders": false,
+// "[shellscript]": {
+//     "editor.defaultFormatter": "foxundermoon.shell-format"
+// },
+// "[starlark]": {
+//     "editor.defaultFormatter": "BazelBuild.vscode-bazel",
+//     "editor.formatOnSave": true,
+//     "editor.formatOnPaste": true,
+//     "editor.formatOnType": true
+// },
+// "github.copilot.editor.enableAutoCompletions": true,
+// "cmake.pinnedCommands": [
+//     "workbench.action.tasks.configureTaskRunner",
+//     "workbench.action.tasks.runTask"
+// ],
+// "clangd.arguments": [
+//     "--header-insertion=never",
+//     "--compile-commands-dir=${workspaceFolder}/",
+//     "--query-driver=**"
+// ],
+// "files.watcherExclude": {
+//     "**/bazel-*/**": true,
+//     "**/build/**": true
+// },
+// "remote.autoForwardPortsSource": "output",
+// "clang-format.executable": "clang-format-18",
+// "[dockerfile]": {
+//     "editor.defaultFormatter": "foxundermoon.shell-format"
+// },
+// "editor.guides.indentation": false,
+// "shellformat.useEditorConfig": true,
+// "shellformat.flag": "-bn",
+// "[properties]": {
+//     "editor.defaultFormatter": "foxundermoon.shell-format"
+// },
+// "editor.fontSize": 16,
+// "editor.fontFamily": "'IntoneMono NF', 'MesloLGS NF', 'Mensch', 'JetBrains Mono', 'Droid Sans Mono', 'monospace'",
+// "editor.fontLigatures": true,
+// "workbench.settings.applyToAllProfiles": [
+//     "editor.fontFamily"
+// ],
+// ],
+// "editor.codeLensFontFamily": "'Lilex Nerd Font', 'IntoneMono NF', 'JetBrains Mono'",
+// "clangd.detectExtensionConflicts": false,
+// "[html]": {
+//     "editor.defaultFormatter": "vscode.html-language-features"
+// },
+// "clangd.checkUpdates": true,
+// "security.workspace.trust.untrustedFiles": "open",
+//#endregion

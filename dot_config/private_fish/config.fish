@@ -57,11 +57,17 @@ if status is-interactive
 	### Commands
 	abbr --add gita --position command "git add . && git status"
 	abbr --add gitb --position command "git branch"
+	abbr --add gitspull --position command "git pull && git submodule sync --recursive && git submodule update --init --recursive"
+	### Format Helpers
+	abbr --add gitqlog --position command "git log --pretty=format:\"%h %C(cyan)%cr%Creset %Cgreen%s %Cred%d%Creset\""
+	abbr --add gittree --position command "git log --graph --decorate --pretty=oneline --abbrev-commit --branches"
 	# TODO: Change below to a function to auto-populate ticket number based on branch name
 	abbr --add gitc --position command --set-cursor=_ "git commit -m \"TAS-_ #comment \""
-	abbr --add gitch --position command --set-cursor=# "git checkout RKOPLI-TAS-#"
+	abbr --add gitch --position command --set-cursor=# "git checkout rkopli/#-TAS-"
 	abbr --add gitct --position command "git commit -m "TAS-#### #time #h #comment "
 	abbr --add gits --position command "git status"
+	
+
 	
 	## Seegrid DM Tool
 	abbr --add dme --position command --set-cursor=_ "dm exec build _"
