@@ -9,7 +9,7 @@ fi
 
 # Show commits which will be squashed:
 echo "The following commits will be squashed:"
-git log -n "$1" --pretty=format:"    %C(cyan)%cr%C(reset) %C(bold green)%s%C(reset)"
+git log -n "$1" --pretty=format:"    %C(bold cyan)%an%C(reset) %C(bold yellow)%cr%C(reset) %C(green)%s%C(reset)"
 
 # Confirm squash
 read -p "Do you wish to proceed? (y/N)" confirmation

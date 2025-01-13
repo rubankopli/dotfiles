@@ -10,7 +10,7 @@
         "editor.renderWhitespace": "trailing"
     },
     "[c]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools"
+        "editor.defaultFormatter": "xaver.clang-format"
     },
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
@@ -24,19 +24,31 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
+    "[markdown]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 120
+    },
     "[properties]": {
         "editor.bracketPairColorization.enabled": true,
         "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?"
     },
     "[python]": {
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
+        // Bracket Pairs
+        "editor.guides.bracketPairs": true,
+        "editor.bracketPairColorization.enabled": true,
+        // Indentation Guides
+        "editor.guides.indentation": true,
+        "editor.guides.highlightActiveIndentation": true,
     },
+    "C_Cpp.intelliSenseEngine": "disabled",
     //#endregion
     /////////////////////////////
     //#region General Settings //
     /////////////////////////////
     //#region > Color/Theme
     "workbench.colorTheme": "Material Candy",
+    //#region >> Workbench Color Customizations
     "workbench.colorCustomizations": {
         "[Material Candy]": {
             // editor
@@ -63,7 +75,7 @@
             // tab bar
             // "tab.activeBackground": "#122412",
             "editorGroupHeader.tabsBackground": "#000000",
-            "tab.activeBackground": "#010101",
+            "tab.activeBackground": "#181818",
             //     "tab.activeBackground": "#121a24"
             "tab.activeForeground": "#00DDAA",
             "tab.inactiveBackground": "#000000",
@@ -78,16 +90,23 @@
             "sideBar.background": "#000000"
         }
     },
+    //#endregion
+    //#region >> Token Color Customizations
     "editor.semanticTokenColorCustomizations": {
         "[Material Candy]": {
             "enabled": true,
             "rules": {}
         }
     },
+    //#region Custom Color Codes
+    //#endregion
     "editor.tokenColorCustomizations": {
         "comments": "#009900",
         "[Material Candy]": {},
         "textMateRules": [
+            //#region >>> C++
+            //#endregion
+            //#region >>> Generic
             {
                 "scope": "keyword.control.ref.properties",
                 "settings": {
@@ -95,11 +114,45 @@
                 }
             },
             {
+                "scope": "entity.name.section.group-title.ini",
+                "settings": {
+                    "foreground": "#65ff51"
+                }
+            },
+            {
+                "scope": "comment.line.number-sign.ini",
+                "settings": {
+                    "foreground": "#1a5200"
+                }
+            },
+            // Constants
+            {
+                "scope": "constant.language",
+                "settings": {
+                    "foreground": "#009dff",
+                    "fontStyle": "italic"
+                }
+            },
+            // Separators
+            {
                 "scope": "keyword.other.separator",
                 "settings": {
                     "foreground": "#FF8C00"
                 }
             },
+            {
+                "scope": "punctuation.separator.key-value.ini",
+                "settings": {
+                    "foreground": "#FF8C00"
+                }
+            },
+            {
+                "scope": "punctuation.separator.option.ini",
+                "settings": {
+                    "foreground": "#0048ff"
+                }
+            },
+            // Options
             {
                 "scope": "string.other.option",
                 "settings": {
@@ -112,36 +165,64 @@
                     "foreground": "#009dff"
                 }
             },
+            //#endregion
+            //#region >>> Log
             {
-                "scope": "punctuation.separator.key-value.ini",
+                "scope": "log.info",
                 "settings": {
-                    "foreground": "#FF8C00"
+                    "foreground": "#00ff0d",
+                    "fontStyle": "bold"
                 }
             },
             {
-                "scope": "entity.name.section.group-title.ini",
+                "scope": "log.debug",
                 "settings": {
-                    "foreground": "#65ff51"
+                    "foreground": "#eeff00",
+                    "fontStyle": "bold"
                 }
             },
             {
-                "scope": "punctuation.separator.option.ini",
+                "scope": "log.warning",
                 "settings": {
-                    "foreground": "#0048ff"
+                    "foreground": "#ff4400",
+                    "fontStyle": "bold"
                 }
             },
             {
-                "scope": "comment.line.number-sign.ini",
+                "scope": "log.error",
                 "settings": {
-                    "foreground": "#1a5200"
+                    "foreground": "#FF0000",
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "scope": "log.exceptiontype",
+                "settings": {
+                    "foreground": "#ff2a00",
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": "log.string",
+                "settings": {
+                    "foreground": "#FF8C00",
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": "text.log",
+                "settings": {
+                    "foreground": "#00d7ac"
                 }
             }
+            //#endregion
         ]
     },
     //#endregion
+    //#endregion
     //#region > Workbench
     "workbench.startupEditor": "none",
-    "workbench.settings.editor": "json",
+    // "workbench.settings.editor": "json",
     //#region >> Layout
     "workbench.editor.pinnedTabSizing": "compact",
     "workbench.sideBar.location": "right",
@@ -153,7 +234,8 @@
     //#region >> View
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "editor.guides.indentation": false,
-    "editor.minimap.autohide": true,
+    "editor.minimap.enabled": true,
+    "editor.minimap.autohide": false,
     "editor.minimap.maxColumn": 80,
     "editor.minimap.scale": 1,
     "editor.minimap.side": "right",
@@ -168,10 +250,11 @@
     "editor.unicodeHighlight.nonBasicASCII": false,
     //#endregion
     //#region >> Formatting
+    "editor.defaultFormatter": "xaver.clang-format",
+    // "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    // "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "editor.wrappingIndent": "indent",
     //#endregion
@@ -194,8 +277,6 @@
         "10.0.0.176": "linux",
         "magicmirror.local": "linux"
     },
-    //#endregion
-    //#region > Security
     "security.allowedUNCHosts": [
         "TOWER"
     ],
@@ -206,6 +287,7 @@
     //#endregion
     //#region > Window
     "window.closeWhenEmpty": true,
+    "window.title": "${rootName}${separator}${profileName}${separator}${appName}",
     //#endregion
     //#endregion
     ///////////////////////////////
@@ -267,6 +349,15 @@
             "italic": false
         },
         {
+            "tag": "temp",
+            "color": "#D47C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#004977",
+            "bold": true,
+            "italic": false
+        },
+        {
             "tag": "*",
             "color": "#98C379",
             "strikethrough": false,
@@ -276,6 +367,11 @@
             "italic": false
         }
     ],
+    //#endregion
+    //#region > Clanged
+    "clangd.checkUpdates": true,
+    "clangd.detectExtensionConflicts": false,
+    "clangd.path": "/home/seegrid.local/rkopli/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/19.1.2/clangd_19.1.2/bin/clangd",
     //#endregion
     //#region > CMake
     "cmake.buildDirectory": "${workspaceFolder}/build/x64-Linux-Development/",
@@ -325,8 +421,18 @@
     "githubPullRequests.assignCreated": "${user}",
     "githubPullRequests.commentExpandState": "collapseAll",
     //#endregion
+    //#region > Gitlens
+    "gitlens.autolinks": [
+        {
+            "prefix": "TAS-",
+            "url": "https://seegrid.atlassian.net/browse/TAS-<num>"
+        }
+    ],
+    "gitlens.plusFeatures.enabled": false,
+    "gitlens.telemetry.enabled": false,
+    //#endregion
     //#region > GlassIt
-    "glassit.alpha": 255,
+    "glassit.alpha": 225,
     //#endregion
     //#region > HeaderSourceSwitch
     "headerSourceSwitch.mappings": [
@@ -344,7 +450,8 @@
                 ".cxx",
                 ".inc",
                 ".m",
-                ".mm"
+                ".mm",
+                ".tcc"
             ],
             "name": "C++"
         }

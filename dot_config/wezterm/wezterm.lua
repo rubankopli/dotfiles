@@ -10,22 +10,46 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices --
 
--- NO BELL NOISE PLEASE DEAR GOD
-config.audible_bell = "Disabled"
+-------------------
+--- * GENERAL * ---
+-------------------
 
-------------------
---- * STARTUP * --
-------------------
+-- NO BELL NOISE PLEASE DEAR GOD
+config.audible_bell = 'Disabled'
+
+-- Don't prompt for confirmation on exit
+config.window_close_confirmation = 'NeverPrompt'
+
+
+-------------
+-- Startup --
+-------------
 
 -- non-windows targets
 --if wezterm.target_triple ~= 'x86_64-pc-windows-msvc' then
 --	config.default_prog = { 'zellij' }
 --end
-config.default_prog = { 'zellij' }
+--config.default_prog = { 'zellij', 'attach', '--create', 'dev' }
 
---------------------
--- * APPEARANCE * --
---------------------
+
+-----------------------
+--- * KEYBINDINGS * ---
+-----------------------
+
+config.keys = {
+    {    
+        key = 'Backspace', mods = 'CTRL',
+        action = wezterm.action.SendKey { key = 'w', mods = 'CTRL' },
+
+	key = 'Delete', mods = 'ALT',
+	action = wezterm.action.SendKey { key = 'd', mods = 'ALT' },
+
+    },
+}
+
+----------------------
+--- * APPEARANCE * ---
+----------------------
 
 ----------------
 -- Font/Theme --
@@ -40,9 +64,11 @@ dank_theme.apply_to_config(config) -- Apply our custom theme and create config.c
 -----------------------
 
 config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
 
 -- Tab colors
 config.colors.tab_bar = {
+
     -- The inactive tab bar edge/divider --
     inactive_tab_edge = '#575757',
 
@@ -76,7 +102,8 @@ config.window_frame = {
 
 config.tab_bar_style =
 {
-
+--    local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
+--    local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 }
 
 
@@ -87,9 +114,9 @@ config.tab_bar_style =
 
 dynamic_background.apply_to_config(config)
 
-------------------
--- * LAUNCHER * --
-------------------
+--------------------
+--- * LAUNCHER * ---
+--------------------
 
 ------------------------------
 -- Windows Launcher Options --

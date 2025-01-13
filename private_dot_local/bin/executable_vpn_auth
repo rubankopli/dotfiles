@@ -1,0 +1,31 @@
+#!/usr/bin/expect -f
+
+# Get credentials from bitwarden
+
+## Grab the session key from the environment variable
+set BW_SESSION $env(BW_SESSION)
+
+## Grab the credentials
+set username [exec bw get username 01a5af87-ac51-43be-88d1-b22d01193fc7 --session $BW_SESSION]
+set password [exec bw get password 01a5af87-ac51-43be-88d1-b22d01193fc7 --session $BW_SESSION]
+set totp [exec bw get totp 01a5af87-ac51-43be-88d1-b22d01193fc7 --session $BW_SESSION]
+
+# Start openvpn session
+
+## Spawn the process
+spawn openvpn3 session-start --config seegrid
+
+## Supply credentials
+
+expect "*User*name:*"
+send "$username\r"
+
+expect "*Password:*"
+send "$password\r"
+
+expect "*Authenticator*Code:*"
+send "$totp\r"
+
+# Keep the session running
+interact
+
