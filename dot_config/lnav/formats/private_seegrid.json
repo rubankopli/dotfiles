@@ -1,0 +1,94 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "seegrid": {
+        "description": "Format file generated from regex101 entry -- https://regex101.com/r/tK1Kit",
+        "regex": {
+            "vehicle": {
+                "pattern": "(\\[(?<timestamp>\\d+)[ ]+(?<subsecond>\\d+)[ ]+(?<opid>\\d+)[ ]+(?<level>\\w+)\\])[ ]+(?<body>.*(?:\\n[^\\[].*)*)"
+            },
+            "test": {
+                "pattern": "\\[(?<timestamp>\\d+)[ ]+(?<subsecond>\\d+)[ ]+(?<opid>\\d+)[ ]+(?<level>\\w+) (?<file>.*):(?<line>\\d*)\\][ ]+(?<body>.*(?:\\n[^\\[].*)*)"
+            }
+        },
+        "timestamp-format": [
+            "%s"
+        ],
+        "subsecond-units": "micro",
+        "opid-field": "opid",
+        "value": {
+            "timestamp": {
+                "kind": "integer"
+            },
+            "opid": {
+                "kind": "integer"
+            },
+            "level": {
+                "kind": "string"
+            },
+            "body": {
+                "kind": "string"
+            }
+        },
+        "level": {
+            "error": "ERROR",
+            "warning": "WARNING",
+            "trace": "VERBOSE",
+            "info": "INFO",
+            "debug": "DEBUG"
+        },
+        "highlights": {
+            "node_id": {
+                "pattern": "node ID: [0-9]+x[0-9]+"
+            },
+            "operation": {
+                "pattern": "^.+: "
+            }
+        },
+        "sample": [
+            {
+                "line": "[1708970402 983591 9146 DEBUG] Running command: /bin/bash -c \"cat /proc/9146/cmdline\"\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970402 987737 9146 DEBUG] System command succeeded: cat /proc/9146/cmdline timeout: 0\nExecutable name: ./pcu-power-device-unit-test\nChecking: /home/seegrid/trunk/build/release/unittests/hardware/power/pcu/./pcu-power-device-unit-test\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970402 987871 9146 DEBUG] Running command: /bin/bash -c \"cd \\\"/home/seegrid/trunk\\\" ; pwd\"",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970402 991221 9146 DEBUG] System command succeeded: cd \"/home/seegrid/trunk\" ; pwd timeout: 0\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970402 991248 9146 DEBUG] Running command: /bin/bash -c \"sg-paths config\"\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970403   5061 9146 DEBUG] System command succeeded: sg-paths config timeout: 0\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970403   5397 9146 DEBUG] loadXmlFile begin /home/seegrid/trunk/conf/ConfigDb.xml\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970403   5600 9146 DEBUG] Protected configuration directory found /home/seegrid/trunk/conf/protected\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970403   5695 9146 DEBUG] Found protected configuration file /home/seegrid/trunk/conf/protected/protected.xml\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970403   5802 9146 DEBUG] Pre-loading override file /home/seegrid/trunk/../Paths/Override.xml\n",
+                "level": "debug"
+            },
+            {
+                "line": "[1708970403   5837 9146 DEBUG] loadXmlFile begin /home/seegrid/trunk/../Paths/Override.xml\n",
+                "level": "debug"
+            }
+        ]
+    }
+}
