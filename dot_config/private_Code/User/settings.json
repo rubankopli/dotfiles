@@ -34,9 +34,6 @@
     },
     "[python]": {
         "editor.formatOnType": true,
-        // Bracket Pairs
-        "editor.guides.bracketPairs": true,
-        "editor.bracketPairColorization.enabled": true,
         // Indentation Guides
         "editor.guides.indentation": true,
         "editor.guides.highlightActiveIndentation": true,
@@ -231,10 +228,19 @@
     //#region > Editor
     "editor.accessibilitySupport": "off",
     "editor.tabCompletion": "on",
+    // Bracket Pairs
+    "editor.guides.bracketPairs": true,
+    "editor.bracketPairColorization.enabled": true,
+    //#region >> Font
+    "editor.fontSize": 14,
+    "editor.fontFamily": "'Mensch', 'MesloLGS NF', 'IntoneMono NF', 'JetBrains Mono', 'Droid Sans Mono', 'monospace'",
+    "editor.fontLigatures": true,
+    "editor.codeLensFontFamily": "'Lilex Nerd Font', 'IntoneMono NF', 'JetBrains Mono'",
+    //#endregion
     //#region >> View
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "editor.guides.indentation": false,
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
     "editor.minimap.autohide": false,
     "editor.minimap.maxColumn": 80,
     "editor.minimap.scale": 1,
@@ -263,7 +269,8 @@
     "files.associations": {
         "*.yaml": "yaml",
         "*.inc": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        ".clangd": "yaml"
     },
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
@@ -284,9 +291,49 @@
     //#endregion
     //#region > Terminal
     "terminal.integrated.stickyScroll.enabled": true,
+    "terminal.external.linuxExec": "wezterm",
+    "terminal.integrated.automationProfile.linux": {
+        "path": "/usr/local/bin/zellij",
+        "args": [
+            "--session",
+            "dev",
+            "run",
+            "--floating",
+            "--width",
+            "96%",
+            "--x",
+            "2%",
+            "--height",
+            "60%",
+            "--y",
+            "10%",
+            "--",
+            "/usr/bin/fish",
+            "-c"
+        ],
+    },
+    "terminal.integrated.profiles.linux": {
+        "fish": {
+            "path": "/usr/bin/fish"
+        },
+        "zellij": {
+            "path": "/usr/local/bin/zellij",
+            "icon": "terminal-tmux"
+        },
+        "wezterm-zellij-dev": {
+            "path": "/usr/local/bin/zellij",
+            "args": [
+                "run",
+                "--in-place",
+                "--",
+                "$command"
+            ]
+        }
+    },
     //#endregion
     //#region > Window
     "window.closeWhenEmpty": true,
+    "window.menuBarVisibility": "compact",
     "window.title": "${rootName}${separator}${profileName}${separator}${appName}",
     //#endregion
     //#endregion
@@ -370,8 +417,9 @@
     //#endregion
     //#region > Clanged
     "clangd.checkUpdates": true,
-    "clangd.detectExtensionConflicts": false,
-    "clangd.path": "/home/seegrid.local/rkopli/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/19.1.2/clangd_19.1.2/bin/clangd",
+    "clangd.arguments": [
+        "--header-insertion=never",
+    ],
     //#endregion
     //#region > CMake
     "cmake.buildDirectory": "${workspaceFolder}/build/x64-Linux-Development/",
@@ -386,6 +434,7 @@
     "cSpell.language": "en,en-US",
     "cSpell.userWords": [
         "AUTOSAR",
+        "BEHAVIOUR",
         "Constexpr",
         "constexprs",
         "hellscape",
@@ -397,7 +446,8 @@
         "Telematics",
         "Toliman",
         "tparam",
-        "VRTE"
+        "VRTE",
+        "wezterm"
     ],
     //#endregion
     //#region > DoxygenDocumentationGenerator
@@ -405,6 +455,9 @@
     "doxdocgen.c.firstLine": "///",
     "doxdocgen.c.lastLine": "///",
     "doxdocgen.c.triggerSequence": "///",
+    "doxdocgen.generic.briefTemplate": "@brief ${cursor}",
+    "doxdocgen.generic.paramTemplate": "@param {direction}{align:1} {param}{align:2} ${cursor}",
+    "doxdocgen.generic.returnTemplate": "@return {type} ${cursor}",
     //#endregion
     //#region > Git
     "git.autofetch": true,
@@ -432,7 +485,7 @@
     "gitlens.telemetry.enabled": false,
     //#endregion
     //#region > GlassIt
-    "glassit.alpha": 225,
+    "glassit.alpha": 245,
     //#endregion
     //#region > HeaderSourceSwitch
     "headerSourceSwitch.mappings": [
@@ -475,9 +528,43 @@
         }
     ],
     //#endregion
+    //#region > Todo Tree
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "TODO:",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.general.tagGroups": {
+        "TODO": [
+            "TODO",
+            "TODO:"
+        ]
+    },
+    "todo-tree.highlights.defaultHighlight": {
+        "icon": "checklist",
+        "gutterIcon": true,
+        "iconColour": "#FF8C00",
+        "type": "tag",
+        "foreground": "#000000",
+        "background": "#FF8C00",
+    }
+    //#endregion
     //#region > YAML
     "yaml.format.singleQuote": true,
     "yaml.schemas": {},
+    "task.allowAutomaticTasks": "on",
+    "doxdocgen.generic.authorEmail": "rubankopli@gmail.com",
+    "doxdocgen.generic.authorName": "Ruban Kopli",
+    "doxdocgen.generic.useGitUserEmail": true,
+    "doxdocgen.generic.useGitUserName": true,
+    "cloudcode.duetAI.project": "",
+    "geminicodeassist.codeGenerationPaneViewEnabled": false,
+    "geminicodeassist.enableTelemetry": false,
     //#endregion
     //#endregion
 }

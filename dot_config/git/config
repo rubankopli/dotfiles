@@ -1,10 +1,7 @@
 
 [alias]
 	quicklog = log --pretty=format:\"%h %C(cyan)%cr%Creset %Cgreen%s %Cred%d%Creset\"
-
-	bam = branch
-
-	
+	bam = branch	
 	shortlog = log --pretty=format:"%C(cyan)%<(15,trunc)%cr %C(blue)%<(25,trunc)%cn %C(green)%<(50, trunc)%s %Creset"
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit --branches
 	squash = !"squash.sh"
@@ -17,7 +14,7 @@
 	file-decoration-style = "#8a0f5d" bold ul ol
 	line-numbers = true
 	navigate = true
-	pager = ov	
+	pager = ov --quit-if-one-screen
 
 [diff]
 	algorithm = histogram

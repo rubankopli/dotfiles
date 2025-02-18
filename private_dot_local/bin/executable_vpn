@@ -1,4 +1,9 @@
 #!/usr/bin/fish
+
+if not bw login --check
+    bw login
+end
+
 set --export BW_SESSION $(bw unlock --raw)
 
 vpn_auth

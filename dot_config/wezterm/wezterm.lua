@@ -32,12 +32,78 @@ config.window_close_confirmation = 'NeverPrompt'
 --config.default_prog = { 'zellij', 'attach', '--create', 'dev' }
 
 
+---------------------
+--- * BEHAVIOUR * ---
+---------------------
+
+----------------
+-- Hyperlinks --
+----------------
+
+-- Custom Hyperlink Regexes
+
+-- Use the defaults as a base
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+
+-- Make Jira numbers clickable
+-- Internal capture group for adding other boards (TAS|OTHER1|OTHER2) etc.
+table.insert(config.hyperlink_rules, {
+    regex = [[\b((TAS|TRIAGE)-\d{3,4})\b]],
+    format = 'https://seegrid.atlassian.net/browse/$1',
+})
+
+-- Open file:line:column links in vscode
+-- $1 - path
+-- $2 - parent folder
+-- $3 - filename
+-- $4 - :line:column (optional)
+-- $5 - line         (optional)
+-- $6 - column       (optional)
+table.insert(config.hyperlink_rules, {
+    regex = [[(([\w]+\/)+)([\w]+\.[\w]{1,3})(:([\d]+):([\d]+)){0,1}]],
+    format = 'code:$1$3$4'
+})
+
+wezterm.on('window-focus-changed', function(window, pane)
+    wezterm.action.SpawnCommandInNewTab()
+end)
+
+-- Custom URI Handling --
+wezterm.on('open-uri', function(window, pane, uri)
+    -- Check if there is a 'code:' in front of the link
+    local uri_start, uri_end = uri:find 'code:'
+    if uri_start == 1 then
+
+        -- Grab the portion without the 'code:' prefix
+        local file = uri:sub(uri_end + 1)
+
+
+        window:perform_action(
+            -- wezterm.action.SpawnCommandInNewTab {
+                -- args = { 'code', '--goto', file },
+            -- },
+            wezterm.background_child_process {
+                'code', '--goto', file
+            },
+            pane
+        )
+        -- Open the file in vscode
+        -- wezterm.background_child_process('code', '--goto', file)
+        -- wezterm.run_child_process('code', '--goto', file)
+        -- prevent the default action from opening in a browser
+        return false
+    end
+    -- otherwise, by not specifying a return value, we allow later
+    -- handlers and ultimately the default action to cause the
+    -- URI to be opened in the browser
+end)
+
 -----------------------
 --- * KEYBINDINGS * ---
 -----------------------
 
 config.keys = {
-    {    
+    {
         key = 'Backspace', mods = 'CTRL',
         action = wezterm.action.SendKey { key = 'w', mods = 'CTRL' },
 

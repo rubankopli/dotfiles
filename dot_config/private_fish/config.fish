@@ -83,9 +83,10 @@ if status is-interactive
     abbr --add dmb --position command "dm ./waf install_debug --targets=vsm"
     abbr --add dmbp --position command "dm ./waf install_release"
     abbr --add dmt --position command --set-cursor=# "dm unit_test ./run-unittests.py #"
+    abbr --add dmp --position command --set-cursor=# "dm --entrypoint-tty platinum python -u ./util/platinum/PlatinumTestVsm.py --delete-path-db --tests test_#.py --body-types lift-series-1-106in,cab-reach-1-200in"
     abbr --add dmp-vsm --position command --set-cursor=# "dm  --entrypoint-tty platinum util/platinum/PlatinumTestVsm.py --tests #.py --body-types seegrid"
     abbr --add dmbt --position command --set-cursor=# "dm ./waf install_release && dm unit_test ./run-unittests.py #"
-
+    abbr --add dmu --position command --set-cursor=# "dm unit_test ./run-unittests.py -b debug test-#"
 
 
     # end if  is-interactive	

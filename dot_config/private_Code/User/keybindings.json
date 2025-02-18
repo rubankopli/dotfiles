@@ -53,5 +53,37 @@
         "key": "shift+enter",
         "command": "-python.execSelectionInTerminal",
         "when": "editorTextFocus && !findInputFocussed && !isCompositeNotebook && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+    },
+    {
+        "key": "ctrl+alt+p",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "ctrl+alt+h",
+        "command": "extension.helixKeymap.enableHelix",
+        "when": "!extension.helixKeymap.commandMode && !extension.helixKeymap.insertMode && !extension.helixKeymap.normalMode && !extension.helixKeymap.selectMode && !extension.helixKeymap.visualMode"
+    },
+    {
+        "key": "ctrl+alt+h",
+        "command": "extension.helixKeymap.enterDisabledMode",
+        "when": "extension.helixKeymap.insertMode || extension.helixKeymap.normalMode || extension.helixKeymap.selectMode || extension.helixKeymap.visualMode || extension.helixKeymap.commandMode"
+    },
+    {
+        "key": "ctrl+pagedown",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+pagedown",
+        "command": "-workbench.action.nextEditor"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.previousEditor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.nextEditor",
+        "when": "editorTextFocus"
     }
 ]
