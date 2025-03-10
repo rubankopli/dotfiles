@@ -71,8 +71,8 @@ if status is-interactive
     abbr --add gitqlog --position command "git log --pretty=format:\"%h %C(cyan)%cr%Creset %Cgreen%s %Cred%d%Creset\""
     abbr --add gittree --position command "git log --graph --decorate --pretty=oneline --abbrev-commit --branches"
     # TODO: Change below to a function to auto-populate ticket number based on branch name
-    abbr --add gitc --position command --set-cursor=_ "git commit -m \"TAS-_\""
-    abbr --add gitch --position command --set-cursor=# "git checkout rkopli/#-TAS-"
+    abbr --add gitc --position command --set-cursor=# "git commit -m \"TAS-# #comment \""
+    abbr --add gitch --position command --set-cursor=# "git checkout rkopli/TAS-#"
     abbr --add gitct --position command "git commit -m "TAS-#### #time #h #comment "
     abbr --add gits --position command "git status"
 

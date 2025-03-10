@@ -3,7 +3,7 @@
     //#region Language Settings //
     //////////////////////////////
     "[ansible]": {
-        "editor.defaultFormatter": "redhat.ansible",
+        // "editor.defaultFormatter": "redhat.ansible",
         "editor.formatOnPaste": true,
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
@@ -282,7 +282,8 @@
     //#region > Remote
     "remote.SSH.remotePlatform": {
         "10.0.0.176": "linux",
-        "magicmirror.local": "linux"
+        "magicmirror.local": "linux",
+        "azuras.bigboobs.best": "linux"
     },
     "security.allowedUNCHosts": [
         "TOWER"
@@ -333,7 +334,7 @@
     //#endregion
     //#region > Window
     "window.closeWhenEmpty": true,
-    "window.menuBarVisibility": "compact",
+    "window.menuBarVisibility": "toggle",
     "window.title": "${rootName}${separator}${profileName}${separator}${appName}",
     //#endregion
     //#endregion
@@ -345,6 +346,7 @@
     "arduino.useArduinoCli": true,
     //#endregion
     //#region > BetterComments
+    "better-comments.multilineComments": true,
     "better-comments.tags": [
         {
             "tag": "!",
@@ -373,17 +375,12 @@
             "bold": false,
             "italic": false
         },
-        // {
-        //     "tag": "/ @",
-        //     "color": "#028700",
-        //     "strikethrough": false,
-        //     "underline": false,
-        //     "backgroundColor": "transparent",
-        //     "bold": false,
-        //     "italic": false
-        // },
         {
             "tag": "//",
+            "color": "#16e06e"
+        },
+        {
+            "tag": "#",
             "color": "#16e06e"
         },
         {
@@ -437,14 +434,17 @@
         "BEHAVIOUR",
         "Constexpr",
         "constexprs",
+        "gifs",
         "hellscape",
         "Karolinska",
         "nullpointer",
         "PIPC",
         "Rigil",
+        "Seegrid",
         "Struct",
         "Telematics",
         "Toliman",
+        "totp",
         "tparam",
         "VRTE",
         "wezterm"
@@ -529,6 +529,7 @@
     ],
     //#endregion
     //#region > Todo Tree
+    "todo-tree.regex.enableMultiLine": true,
     "todo-tree.general.tags": [
         "BUG",
         "HACK",
@@ -552,7 +553,7 @@
         "type": "tag",
         "foreground": "#000000",
         "background": "#FF8C00",
-    }
+    },
     //#endregion
     //#region > YAML
     "yaml.format.singleQuote": true,
@@ -565,6 +566,12 @@
     "cloudcode.duetAI.project": "",
     "geminicodeassist.codeGenerationPaneViewEnabled": false,
     "geminicodeassist.enableTelemetry": false,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "chat.commandCenter.enabled": false,
+    "fiveServer.highlight": true,
+    "fiveServer.injectBody": true,
     //#endregion
     //#endregion
 }

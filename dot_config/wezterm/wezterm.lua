@@ -35,7 +35,7 @@ config.window_close_confirmation = 'NeverPrompt'
 ---------------------
 --- * BEHAVIOUR * ---
 ---------------------
-
+-- (?<path>(?<base_folder>[\w]+\/)+)(?<file>[\w]+\.[\w]{1,3})(?<line>:(?<line_number>[\d]+)){0,1}(?<column>:(?<column_number>[\d]+)){0,1}
 ----------------
 -- Hyperlinks --
 ----------------
@@ -56,12 +56,13 @@ table.insert(config.hyperlink_rules, {
 -- $1 - path
 -- $2 - parent folder
 -- $3 - filename
--- $4 - :line:column (optional)
--- $5 - line         (optional)
--- $6 - column       (optional)
+-- $4 - :line   (optional)
+-- $5 - line
+-- $6 - :column (optional)
+-- $7 - column
 table.insert(config.hyperlink_rules, {
-    regex = [[(([\w]+\/)+)([\w]+\.[\w]{1,3})(:([\d]+):([\d]+)){0,1}]],
-    format = 'code:$1$3$4'
+    regex = [[(([\w]+\/)+)([\w]+\.[\w]{1,3})(:([\d]+)){0,1}(:([\d]+)){0,1}]],
+    format = 'code:$1$3$4$6'
 })
 
 wezterm.on('window-focus-changed', function(window, pane)
@@ -75,15 +76,18 @@ wezterm.on('open-uri', function(window, pane, uri)
     if uri_start == 1 then
 
         -- Grab the portion without the 'code:' prefix
-        local file = uri:sub(uri_end + 1)
+        local path = uri:sub(uri_end + 1)
+        -- path = name:gsub("checkout/src/", "")
 
+        local folder = "/home/seegrid.local/rkopli/repos/seegrid/dev/vehicle-metapackage/submodules/blue/"
+        path = (folder .. path)
 
         window:perform_action(
             -- wezterm.action.SpawnCommandInNewTab {
-                -- args = { 'code', '--goto', file },
+                -- args = { 'code', '--goto', path },
             -- },
             wezterm.background_child_process {
-                'code', '--goto', file
+                'code', '--goto', path
             },
             pane
         )

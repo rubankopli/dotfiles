@@ -22,10 +22,19 @@
                 "kind": "integer"
             },
             "opid": {
-                "kind": "integer"
+                "kind": "integer",
+                "identifier": true
             },
             "level": {
-                "kind": "string"
+                "kind": "string",
+                "identifier": true
+            },
+            "file": {
+                "kind": "string",
+                "identifier": true
+            },
+            "line": {
+                "kind": "integer"
             },
             "body": {
                 "kind": "string"
@@ -44,6 +53,11 @@
             },
             "operation": {
                 "pattern": "^.+: "
+            },
+            "Test Failed": {
+                "pattern": "!!!FAILURES!!!",
+                "color": "#ff0000",
+                "blink": true
             }
         },
         "sample": [
