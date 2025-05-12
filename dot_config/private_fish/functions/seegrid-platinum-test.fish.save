@@ -1,0 +1,7 @@
+# Build & Test command:
+# dm --entrypoint-tty platinum python -u ./util/platinum/PlatinumTestVsm.py --delete-path-db --tests test_.py --body-types lift-series-1-106in,cab-reach-1-200i
+
+function seegrid-build-release --description 'Release build a given target or targets'
+	dm --entrypoint-tty platinum python -u ./util/platinum/PlatinumTestVsm.py --delete-path-db --tests 
+	dm ./waf install_release --targets=$argv
+end 
